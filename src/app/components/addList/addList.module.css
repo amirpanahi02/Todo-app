@@ -1,0 +1,9 @@
+.container {
+  height: 35px;
+  width: 280px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.041);
+  font-size: 1rem;
+  color: rgb(31, 31, 31);
+}
