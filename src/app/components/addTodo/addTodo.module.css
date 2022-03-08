@@ -3,9 +3,12 @@
   width: 240px;
   display: flex;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.041);
   font-size: 1rem;
   color: rgb(31, 31, 31);
   padding: 2px;
   border-radius: 3px;
+}
+
+.container:hover {
+  background-color: #d0d7d8;
 }

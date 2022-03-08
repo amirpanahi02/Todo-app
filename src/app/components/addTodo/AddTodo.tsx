@@ -1,15 +1,15 @@
 import { FC } from "react";
-import style from "./addCard.module.css";
+import style from "./addTodo.module.css";
 import Icon from "@mdi/react";
 import { mdiPlus } from "@mdi/js";
 
-const AddCard: FC = () => {
+const AddTodo: FC = () => {
   return (
     <div className={style.container}>
       <Icon path={mdiPlus} size={1} />
-      <h2>Add a card</h2>
+      <p>Add a card</p>
     </div>
   );
 };
 
-export default AddCard;
+export default AddTodo;

@@ -13,8 +13,18 @@ const addTodoList = (todoLists: TodoList[], text: string): TodoList[] => [
 const deleteTodoList = (todoLists: TodoList[], id: number): TodoList[] =>
   todoLists.filter((tl) => tl.id !== id);
 
+const testState = [
+  {
+    name: "To Do",
+    id: 1,
+    todos: [{ text: "finish project", id: 1, todoListId: 1 }],
+  },
+  // { name: "Doing", id: 2, todos: [] },
+  // { name: "Done", id: 3, todos: [] },
+];
+
 const todoListsReducer = (
-  state: Store = { todoLists: [{ name: "hellowww", id: 1, todos: [] }] },
+  state: Store = { todoLists: testState },
   action: ActionTypes
 ) => {
   switch (action.type) {
