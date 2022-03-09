@@ -1,4 +1,4 @@
-.container {
+.addButton {
   height: 35px;
   width: 240px;
   display: flex;
@@ -9,6 +9,6 @@
   border-radius: 3px;
 }
 
-.container:hover {
+.addButton:hover {
   background-color: #d0d7d8;
 }

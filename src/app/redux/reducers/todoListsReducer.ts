@@ -14,17 +14,17 @@ const deleteTodoList = (todoLists: TodoList[], id: number): TodoList[] =>
   todoLists.filter((tl) => tl.id !== id);
 
 const testState = [
-  {
-    name: "To Do",
-    id: 1,
-    todos: [{ text: "finish project", id: 1, todoListId: 1 }],
-  },
+  // {
+  //   name: "To Do",
+  //   id: 1,
+  //   todos: [{ text: "finish project", id: 1, todoListId: 1 }],
+  // },
   // { name: "Doing", id: 2, todos: [] },
   // { name: "Done", id: 3, todos: [] },
 ];
 
 const todoListsReducer = (
-  state: Store = { todoLists: testState },
+  state: Store = { todoLists: [] },
   action: ActionTypes
 ) => {
   switch (action.type) {

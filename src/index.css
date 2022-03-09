@@ -13,6 +13,17 @@ code {
     monospace;
 }
 
+/* writing classname twice for higher specificity */
+.hide.hide {
+  display: none;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .mr-medium {
   margin-right: 20px;
 }
@@ -22,4 +33,7 @@ code {
 
 .mb-small {
   margin-bottom: 5px;
+}
+.mr-small {
+  margin-right: 5px;
 }
