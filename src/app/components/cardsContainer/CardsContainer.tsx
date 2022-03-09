@@ -11,8 +11,8 @@ const CardsContainer: FC = () => {
   return (
     <div className={style.container}>
       {lists.map(({ id, name, todos }) => (
-        <div className="ml-medium">
-          <Card key={id} title={name} todos={todos} />
+        <div key={id} className="ml-medium">
+          <Card title={name} todos={todos} id={id} />
         </div>
       ))}
       <div className="ml-medium">

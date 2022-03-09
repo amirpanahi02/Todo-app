@@ -1,4 +1,4 @@
-.addButton {
+.add_button {
   height: 35px;
   width: 240px;
   display: flex;
@@ -11,4 +11,26 @@
 
 .addButton:hover {
   background-color: #d0d7d8;
+}
+
+.input_container {
+  width: 240px;
+  background-color: #e6eced;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.input {
+  padding: 5px;
+  width: 95%;
+  height: 54px;
+  resize: none;
+}
+
+.buttons {
+  cursor: pointer;
+  margin-top: 5px;
+  height: 30px;
+  display: flex;
+  align-items: center;
 }

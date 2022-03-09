@@ -10,9 +10,10 @@ import AddTodo from "./../addTodo/AddTodo";
 interface Props {
   title: string;
   todos: Todo[];
+  id: number;
 }
 
-const Card: FC<Props> = ({ title, todos }) => {
+const Card: FC<Props> = ({ title, todos, id }) => {
   return (
     <div className={style.container}>
       <div className={style.header}>
@@ -26,7 +27,7 @@ const Card: FC<Props> = ({ title, todos }) => {
           <TodoCard key={id} id={id} text={text} ListId={todoListId} />
         </div>
       ))}
-      <AddTodo />
+      <AddTodo listId={id} />
     </div>
   );
 };

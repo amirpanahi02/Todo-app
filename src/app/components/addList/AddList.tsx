@@ -28,12 +28,9 @@ const AddList: FC<Props> = () => {
     }
   };
 
-  const inputClass = classnames(style.input_container, { hide: !showInput });
-  const containerClass = classnames(style.container, { hide: showInput });
-
   return (
     <>
-      <div className={inputClass}>
+      <div className={classnames(style.input_container, { hide: !showInput })}>
         <input type="text" ref={inputRef} className={style.input} />
         <div className={style.buttons}>
           <div className="mr-small">
@@ -54,7 +51,7 @@ const AddList: FC<Props> = () => {
         onClick={() => {
           setShowInput(true);
         }}
-        className={containerClass}
+        className={classnames(style.add_list_button, { hide: showInput })}
       >
         <Icon path={mdiPlus} size={1} />
         <p>Add another list</p>
