@@ -9,6 +9,7 @@ import Confirm from "../confirm/Confirm";
 import ModalListItem from "../modalListItem/ModalListItem";
 import { useDispatch } from "react-redux";
 import { deleteTodo } from "../../redux/actions";
+import Modal from "../modal/Modal";
 
 interface Props {
   text: string;
@@ -39,23 +40,19 @@ const TodoCard: FC<Props> = ({ text, todoId, listId }) => {
       >
         <Icon path={mdiPencilOutline} size={0.7} />
       </div>
-      <div className={classNames(style.edit_modal, { hide: !editVisible })}>
-        <div className={style.modalHeading}>
-          <span className={style.modalTitle}>List actions</span>
-          <div
-            className={style.close_icon}
-            onClick={() => setEditVisible(false)}
-          >
-            <Icon path={mdiClose} size={1} />
-          </div>
-        </div>
+      <Modal
+        title="List actions"
+        onClose={() => setEditVisible(false)}
+        visible={editVisible}
+      >
         <ModalListItem
           title="move"
           chevron
           onClick={() => console.log("first")}
         />
         <ModalListItem title="delete" onClick={onDelete} />
-      </div>
+      </Modal>
+
       <Confirm
         title="Are you sure you want to delete this card?"
         visible={deleteVisible}
