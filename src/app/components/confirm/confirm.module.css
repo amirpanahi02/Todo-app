@@ -1,0 +1,25 @@
+.container {
+  position: absolute;
+  top: 33px;
+  right: -120px;
+  width: 150px;
+  z-index: 10;
+  border-radius: 4px;
+  background-color: #fafdfd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 7px;
+}
+
+.buttons {
+  width: 100%;
+  padding: 4px;
+  display: flex;
+  justify-content: space-around;
+}

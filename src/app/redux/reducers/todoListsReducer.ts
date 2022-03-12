@@ -1,6 +1,11 @@
-import { ActionTypes, ADD_TODO_LIST, DELETE_TODO_LIST } from "../actions";
+import {
+  ActionTypes,
+  ADD_TODO,
+  ADD_TODO_LIST,
+  DELETE_TODO,
+  DELETE_TODO_LIST,
+} from "../actions";
 import { Store, TodoList } from "./../types";
-import { ADD_TODO } from "./../actions";
 
 const addTodoList = (todoLists: TodoList[], text: string): TodoList[] => [
   ...todoLists,
@@ -10,6 +15,9 @@ const addTodoList = (todoLists: TodoList[], text: string): TodoList[] => [
     id: Math.max(0, Math.max(...todoLists.map(({ id }) => id))) + 1,
   },
 ];
+const deleteTodoList = (todoLists: TodoList[], id: number): TodoList[] => {
+  return todoLists.filter((tl) => tl.id !== id);
+};
 
 const addTodoToLists = (
   todoLists: TodoList[],
@@ -31,18 +39,17 @@ const addTodoToLists = (
     };
   });
 
-const deleteTodoList = (todoLists: TodoList[], id: number): TodoList[] =>
-  todoLists.filter((tl) => tl.id !== id);
-
-const testState = [
-  // {
-  //   name: "To Do",
-  //   id: 1,
-  //   todos: [{ text: "finish project", id: 1, todoListId: 1 }],
-  // },
-  // { name: "Doing", id: 2, todos: [] },
-  // { name: "Done", id: 3, todos: [] },
-];
+const deleteTodo = (
+  todoLists: TodoList[],
+  payload: { todoId: number; listId: number }
+): TodoList[] =>
+  todoLists.map((todoList) => {
+    if (todoList.id !== payload.listId) return todoList;
+    return {
+      ...todoList,
+      todos: todoList.todos.filter((todo) => todo.id !== payload.todoId),
+    };
+  });
 
 const todoListsReducer = (
   state: Store = { todoLists: [] },
@@ -57,13 +64,18 @@ const todoListsReducer = (
     case DELETE_TODO_LIST:
       return {
         ...state,
-        todolists: deleteTodoList(state.todoLists, action.payload),
+        todoLists: deleteTodoList(state.todoLists, action.payload),
       };
 
     case ADD_TODO:
       return {
         ...state,
         todoLists: addTodoToLists(state.todoLists, action.payload),
+      };
+    case DELETE_TODO:
+      return {
+        ...state,
+        todoLists: deleteTodo(state.todoLists, action.payload),
       };
 
     default:
