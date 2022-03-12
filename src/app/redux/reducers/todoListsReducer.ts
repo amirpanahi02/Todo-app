@@ -4,6 +4,7 @@ import {
   ADD_TODO_LIST,
   DELETE_TODO,
   DELETE_TODO_LIST,
+  MOVE_TODO,
 } from "../actions";
 import { Store, TodoList } from "./../types";
 
@@ -51,6 +52,25 @@ const deleteTodo = (
     };
   });
 
+const moveTodo = (
+  todoLists: TodoList[],
+  payload: {
+    targetListId: number;
+    todoId: number;
+    listId: number;
+    text: string;
+  }
+): TodoList[] => {
+  const newTodoLists = deleteTodo(todoLists, {
+    todoId: payload.todoId,
+    listId: payload.listId,
+  });
+  return addTodoToLists(newTodoLists, {
+    text: payload.text,
+    listId: payload.targetListId,
+  });
+};
+
 const todoListsReducer = (
   state: Store = { todoLists: [] },
   action: ActionTypes
@@ -76,6 +96,12 @@ const todoListsReducer = (
       return {
         ...state,
         todoLists: deleteTodo(state.todoLists, action.payload),
+      };
+
+    case MOVE_TODO:
+      return {
+        ...state,
+        todoLists: moveTodo(state.todoLists, action.payload),
       };
 
     default:
