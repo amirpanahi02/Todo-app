@@ -104,7 +104,13 @@ const moveTodo = (
 };
 
 const todoListsReducer = (
-  state: Store = { todoLists: [] },
+  state: Store = {
+    todoLists: [
+      { name: "Todos", id: 0, todos: [] },
+      { name: "Doing", id: 1, todos: [] },
+      { name: "Done", id: 2, todos: [] },
+    ],
+  },
   action: ActionTypes
 ) => {
   switch (action.type) {
