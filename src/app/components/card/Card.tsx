@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { ChangeEventHandler, FC, useState } from "react";
 import { mdiDeleteForever } from "@mdi/js";
 import Icon from "@mdi/react";
 
@@ -8,7 +8,7 @@ import TodoCard from "../todoCard/TodoCard";
 import AddTodo from "./../addTodo/AddTodo";
 import Confirm from "../confirm/Confirm";
 import { useDispatch } from "react-redux";
-import { deleteTodoList } from "../../redux/actions";
+import { deleteTodoList, editListTitle } from "../../redux/actions";
 
 interface Props {
   title: string;
@@ -23,17 +23,20 @@ const Card: FC<Props> = ({ title, todos, id }) => {
   const onYes = () => {
     dispatch(deleteTodoList(id));
   };
+  const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    dispatch(editListTitle({ text: e.target.value, listId: id }));
+  };
   return (
     <div className={style.container}>
       <div className={style.header}>
-        <input className={style.input} value={title} />
+        <input className={style.input} value={title} onChange={onChange} />
         <div className={style.icon} onClick={() => setShowDeleteModal(true)}>
           <Icon path={mdiDeleteForever} size={1} />
         </div>
       </div>
       {todos.map(({ id, text, todoListId }: Todo) => (
-        <div className="mb-small">
-          <TodoCard key={id} todoId={id} text={text} listId={todoListId} />
+        <div key={id} className="mb-small">
+          <TodoCard todoId={id} text={text} listId={todoListId} />
         </div>
       ))}
       <AddTodo listId={id} />

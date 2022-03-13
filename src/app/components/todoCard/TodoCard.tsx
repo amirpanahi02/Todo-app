@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { ChangeEventHandler, FC, useState } from "react";
 import Icon from "@mdi/react";
 import { mdiPencilOutline } from "@mdi/js";
 
@@ -6,7 +6,7 @@ import style from "./todoCard.module.css";
 import Confirm from "../confirm/Confirm";
 import ModalListItem from "../modalListItem/ModalListItem";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTodo, moveTodo } from "../../redux/actions";
+import { deleteTodo, editTodoText, moveTodo } from "../../redux/actions";
 import Modal from "../modal/Modal";
 import { RootState } from "../../redux/store";
 
@@ -46,10 +46,13 @@ const TodoCard: FC<Props> = ({ text, todoId, listId }) => {
     dispatch(moveTodo({ targetListId, todoId, listId, text }));
     setMoveVisible(false);
   };
+  const onChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+    dispatch(editTodoText({ text: e.target.value, listId, todoId }));
+  };
 
   return (
     <div className={style.container}>
-      <input className={style.input} value={text} />
+      <textarea className={style.input} value={text} onChange={onChange} />
       <div
         className={style.icon}
         onClick={() => {
@@ -81,6 +84,7 @@ const TodoCard: FC<Props> = ({ text, todoId, listId }) => {
           if (list.id === listId) return null;
           return (
             <ModalListItem
+              key={list.id}
               title={list.name}
               onClick={() => onMoveTodo(list.id, todoId, listId, text)}
             />
