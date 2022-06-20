@@ -26,10 +26,13 @@ const Card: FC<Props> = ({ title, todos, id }) => {
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     dispatch(editListTitle({ text: e.target.value, listId: id }));
   };
+  const onKeyUp = (e:React.KeyboardEvent) => {
+      if (e.key === 'Enter' || e.keyCode === 13){(e.target as HTMLInputElement).blur()}
+  }
   return (
     <div className={style.container}>
       <div className={style.header}>
-        <input className={style.input} value={title} onChange={onChange} />
+        <input  className={style.input} value={title} onChange={onChange}  onKeyUp={onKeyUp} />
         <div className={style.icon} onClick={() => setShowDeleteModal(true)}>
           <Icon path={mdiDeleteForever} size={1} />
         </div>

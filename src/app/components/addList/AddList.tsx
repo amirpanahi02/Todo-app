@@ -27,11 +27,15 @@ const AddList: FC<Props> = () => {
       inputRef.current.value = "";
     }
   };
+  const onKeyUp = (e:React.KeyboardEvent) => {
+      if (e.key === 'Enter' || e.keyCode === 13){submitList()}
+  
+}
 
   return (
     <>
       <div className={classnames(style.input_container, { hide: !showInput })}>
-        <input type="text" ref={inputRef} className={style.input} />
+        <input type="text" ref={inputRef} className={style.input} onKeyUp={onKeyUp}/>
         <div className={style.buttons}>
           <div className="mr-small">
             <Button title="Add list" onClick={submitList} />
